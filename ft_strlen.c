@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abeganov <abeganov@student.42warsaw.p      +#+  +:+       +#+        */
+/*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/08 18:25:30 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/09 17:39:52 by abeganov         ###   ########.fr       */
+/*   Created: 2025/10/26 09:41:09 by abeganov          #+#    #+#             */
+/*   Updated: 2025/10/26 09:41:09 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Returns the length of a string (number of characters before \0).
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;

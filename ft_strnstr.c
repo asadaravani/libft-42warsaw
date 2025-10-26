@@ -1,24 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/26 09:41:09 by abeganov          #+#    #+#             */
+/*   Updated: 2025/10/26 19:59:09 by abeganov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char    *ft_strnstr(const char *haystack, const char *needle, size_t len)
+//Finds the first occurrence of a substring, searching up to a given length
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-    size_t	i;
-    size_t	j;
+	size_t	i;
+	size_t	j;
 
-    if (!haystack || !needle)
-        return (NULL);
-    if (!needle || !needle[0])
-        return ((char*)haystack);
-    i = 0;
-    while (haystack[i] && i < len)
-    {
-        j = 0;
-        while (haystack[i + j] && needle[j] &&
-                i + j < len && haystack[i + j] == needle[j])
-            j++;
-        if (!needle[j])
-            return ((char*)(haystack + i));
-        i++;
-    }
-    return (NULL);
+	if (!big || !little)
+		return (NULL);
+	if (!little || !little[0])
+		return ((char *)big);
+	i = 0;
+	while (big[i] && i < len)
+	{
+		j = 0;
+		while (big[i + j] && little[j]
+			&& i + j < len && big[i + j] == little[j])
+			j++;
+		if (!little[j])
+			return ((char *)(big + i));
+		i++;
+	}
+	return (NULL);
 }

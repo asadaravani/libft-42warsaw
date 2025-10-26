@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abeganov <abeganov@student.42warsaw.p      +#+  +:+       +#+        */
+/*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/11 16:32:14 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/11 16:32:25 by abeganov         ###   ########.fr       */
+/*   Created: 2025/10/26 09:41:09 by abeganov          #+#    #+#             */
+/*   Updated: 2025/10/26 09:41:09 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+//Copies a block of memory from a source to a destination (no overlap allowed)
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t				i;

@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 09:41:09 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/26 09:41:09 by abeganov         ###   ########.fr       */
+/*   Created: 2025/10/26 13:22:30 by abeganov          #+#    #+#             */
+/*   Updated: 2025/10/26 13:22:30 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
-//Checks if a character is printable (including space)
-int	ft_isprint(int c)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	if (c >= 32 && c <= 126)
-		return (c);
-	return (0);
+	size_t	i;
+
 }
