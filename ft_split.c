@@ -6,70 +6,92 @@
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 21:31:28 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/27 19:06:23 by abeganov         ###   ########.fr       */
+/*   Updated: 2025/10/27 20:52:38 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static char	**free_all(char **arr, size_t index)
+{
+	size_t	i;
+
+	i = 0;
+	while (i <= index)
+		free(arr[i++]);
+	free(arr);
+	return (NULL);
+}
+
 static size_t	*dyn_word_finder(char const *s, char c, size_t s_e[2])
 {
 	size_t	start;
 	char	*end;
 
 	start = s_e[0];
-	s_e[0] = 0;
-	s_e[1] = 0;
 	while (s[start] == c)
 		start++;
+	if (!s[start])
+	{
+		s_e[0] = 0;
+		s_e[1] = 0;
+		return (s_e);
+	}
 	end = ft_strchr(s + start, c);
 	if (!end)
-		return (s_e);
+		end = (char *)(s + ft_strlen(s));
 	s_e[0] = start;
 	s_e[1] = end - s;
-	return s_e;
+	return (s_e);
 }
+
 static size_t	ft_word_counter(char const *s, char c)
 {
 	size_t	counter;
 	size_t	s_e[2];
+	size_t	*res;
 
 	counter = 0;
-	while (dyn_word_finder(s, c, s_e) + 1 != 0)
+	s_e[0] = 0;
+	s_e[1] = 0;
+	while (1)
+	{
+		res = dyn_word_finder(s, c, s_e);
+		if (res[1] == 0 && res[0] == 0)
+			break ;
 		counter++;
+		s_e[0] = res[1] + 1;
+		if (s[s_e[0]] == '\0')
+			break ;
+	}
 	return (counter);
 }
-static void free_all(char **arr, size_t index)
-{
-	size_t	i;
 
-	i = 0;
-	while (i < index)
-		free(arr[i++]);
-	free(arr);
-}
 char	**ft_split(char const *s, char c)
 {
 	size_t	i;
-	size_t	j;
-	size_t	is_word_start;
-	size_t	word;
-	size_t	start;
-	char	*sub;
+	size_t	s_e[2];
+	size_t	*res;
+	size_t	words;
+	char	**arr;
 
 	if (!s || !c)
 		return (NULL);
-	char **arr = (char**)ft_calloc(ft_word_counter(s, c) + 1, sizeof(char*));
+	words = ft_word_counter(s, c);
+	arr = (char **)ft_calloc(words + 1, sizeof(char *));
 	if (!arr)
 		return (NULL);
 	i = 0;
-	word = i;
-	start = i;
-	while (arr[word])
+	s_e[0] = 0;
+	while (i < words)
 	{
-		j = i + 1;
-		while (s[j])
+		res = dyn_word_finder(s, c, s_e);
+		arr[i] = ft_substr(s, res[0], res[1] - res[0]);
+		if (!arr[i])
+			return (free_all(arr, i));
+		s_e[0] = res[1] + 1;
+		i++;
 	}
-	arr[word++] = ft_substr(s, start, i - start);
-	arr[word] = NULL;
+	arr[i] = NULL;
 	return (arr);
 }
