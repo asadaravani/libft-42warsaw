@@ -6,29 +6,36 @@
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 21:31:28 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/26 23:10:34 by abeganov         ###   ########.fr       */
+/*   Updated: 2025/10/27 19:06:23 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-static size_t	word_counter(char const *s, char c)
+static size_t	*dyn_word_finder(char const *s, char c, size_t s_e[2])
 {
-	size_t	is_word_start;
-	size_t	i;
-	size_t	counter;
+	size_t	start;
+	char	*end;
 
-	is_word_start = 0;
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-			is_word_start = 1;
-		if (s[i] == c && is_word_start == 1)
-		{
-			counter++;
-			is_word_start = 0;
-		}
-	}
+	start = s_e[0];
+	s_e[0] = 0;
+	s_e[1] = 0;
+	while (s[start] == c)
+		start++;
+	end = ft_strchr(s + start, c);
+	if (!end)
+		return (s_e);
+	s_e[0] = start;
+	s_e[1] = end - s;
+	return s_e;
+}
+static size_t	ft_word_counter(char const *s, char c)
+{
+	size_t	counter;
+	size_t	s_e[2];
+
+	counter = 0;
+	while (dyn_word_finder(s, c, s_e) + 1 != 0)
+		counter++;
 	return (counter);
 }
 static void free_all(char **arr, size_t index)
@@ -51,7 +58,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s || !c)
 		return (NULL);
-	char **arr = (char**)ft_calloc(word_counter(s, c) + 1, sizeof(char*));
+	char **arr = (char**)ft_calloc(ft_word_counter(s, c) + 1, sizeof(char*));
 	if (!arr)
 		return (NULL);
 	i = 0;
