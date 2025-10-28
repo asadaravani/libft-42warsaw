@@ -6,7 +6,7 @@
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 21:31:28 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/28 16:18:15 by abeganov         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:19:52 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static size_t	ft_word_counter(char const *s, char c)
 			break ;
 		counter++;
 		s_e[0] = res[1] + 1;
-		if (s[s_e[0]] == '\0')
+		if (res[1] == ft_strlen(s))
 			break ;
 	}
 	return (counter);
