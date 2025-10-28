@@ -6,7 +6,7 @@
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 21:31:28 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/27 20:52:38 by abeganov         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:18:15 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ static size_t	*dyn_word_finder(char const *s, char c, size_t s_e[2])
 	size_t	start;
 	char	*end;
 
+	if (c == '\0')
+	{
+		s_e[1] = ft_strlen(s);
+		return (s_e);
+	}
 	start = s_e[0];
 	while (s[start] == c)
 		start++;
@@ -75,7 +80,7 @@ char	**ft_split(char const *s, char c)
 	size_t	words;
 	char	**arr;
 
-	if (!s || !c)
+	if (!s)
 		return (NULL);
 	words = ft_word_counter(s, c);
 	arr = (char **)ft_calloc(words + 1, sizeof(char *));

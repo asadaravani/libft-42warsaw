@@ -6,7 +6,7 @@
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 12:09:25 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/26 20:01:09 by abeganov         ###   ########.fr       */
+/*   Updated: 2025/10/28 15:58:47 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	i = ft_strlen(s) - start;
-	while (i < len && s[i + start])
-		i++;
-	copy_len = i;
-	ptr = (char *)ft_calloc(copy_len +1, sizeof(*s));
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	copy_len = 0;
+	while (s[start + copy_len] && copy_len < len)
+		copy_len++;
+	ptr = (char *)ft_calloc(copy_len +1, sizeof(char));
 	if (!ptr)
 		return (NULL);
 	i = 0;

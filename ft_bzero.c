@@ -6,7 +6,7 @@
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 10:56:41 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/26 20:00:05 by abeganov         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:29:16 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_bzero(void *s, size_t n)
 	size_t			i;
 	unsigned char	*p;
 
+	if (!s)
+		return ;
 	p = s;
 	i = 0;
 	while (i < n)
