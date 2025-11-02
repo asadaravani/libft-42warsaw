@@ -13,21 +13,17 @@
 #include "libft.h"
 
 //Copies a block of memory from a source to a destination (no overlap allowed)
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t				i;
-	unsigned char		*d;
-	const unsigned char	*s;
+	size_t	i;
 
-	if (!dest && !src)
-		return (0);
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
+	if (!dst)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{
-		d[i] = s[i];
+		*(char*)(dst + i) = *(char*)(src + i);
 		i++;
 	}
-	return (d);
+	return (dst);
 }

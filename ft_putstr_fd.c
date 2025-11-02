@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 10:39:26 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/29 15:58:34 by abeganov         ###   ########.fr       */
+/*   Created: 2025/11/02 14:47:55 by abeganov          #+#    #+#             */
+/*   Updated: 2025/11/02 14:48:24 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_putstr_fd(char *s, int fd)
 {
-	void	*x;
-
-	if (count == 0 || size == 0)
+	if (!s)
+		return ;
+	while (*s != '\0')
 	{
-		count = 1;
-		size = 1;
+		ft_putchar_fd(*s, fd);
+		s++;
 	}
-	if (count > SIZE_MAX / size)
-		return (NULL);
-	x = (void *)malloc(count * size);
-	if (!x)
-		return (NULL);
-	ft_bzero(x, count * size);
-	return (x);
 }

@@ -6,7 +6,7 @@
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 13:22:30 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/26 20:56:39 by abeganov         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:13:47 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		start++;
 	while (end > start && ft_strchr(set, s1[end]))
 		end--;
-	if (start >= end)
+	if (start > end)
 		return (ft_strdup(""));
 	len = end - start + 1;
 	return (ft_substr(s1, start, len));

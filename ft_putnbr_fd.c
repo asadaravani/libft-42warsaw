@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 10:39:26 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/29 15:58:34 by abeganov         ###   ########.fr       */
+/*   Created: 2025/11/02 14:51:40 by abeganov          #+#    #+#             */
+/*   Updated: 2025/11/02 14:51:46 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	void	*x;
+	long	nbr;
 
-	if (count == 0 || size == 0)
+	nbr = n;
+	if (nbr < 0)
 	{
-		count = 1;
-		size = 1;
+		ft_putchar_fd('-', fd);
+		nbr = -nbr;
 	}
-	if (count > SIZE_MAX / size)
-		return (NULL);
-	x = (void *)malloc(count * size);
-	if (!x)
-		return (NULL);
-	ft_bzero(x, count * size);
-	return (x);
+	if (nbr >= 10)
+	{
+		ft_putnbr_fd(nbr / 10, fd);
+		ft_putchar_fd((nbr % 10) + '0', fd);
+	}
+	else
+		ft_putchar_fd(nbr + '0', fd);
 }

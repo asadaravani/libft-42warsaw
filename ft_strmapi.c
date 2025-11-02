@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abeganov <abeganov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/26 10:39:26 by abeganov          #+#    #+#             */
-/*   Updated: 2025/10/29 15:58:34 by abeganov         ###   ########.fr       */
+/*   Created: 2025/11/02 14:35:47 by abeganov          #+#    #+#             */
+/*   Updated: 2025/11/02 14:37:57 by abeganov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	void	*x;
+	char	*str;
+	size_t	i;
 
-	if (count == 0 || size == 0)
+	str = ft_strdup(s);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		count = 1;
-		size = 1;
+		str[i] = (*f)(i, str[i]);
+		i++;
 	}
-	if (count > SIZE_MAX / size)
-		return (NULL);
-	x = (void *)malloc(count * size);
-	if (!x)
-		return (NULL);
-	ft_bzero(x, count * size);
-	return (x);
+	return (str);
 }
